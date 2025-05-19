@@ -2,7 +2,7 @@
 title: Hello World
 date: 2025-05-19 00:00:00 +0000
 categories: [blog]
-tags: [jekyll, chirpy]
+tags: [sympy, gsoc25]
 math: true
 mermaid: true
 ---
