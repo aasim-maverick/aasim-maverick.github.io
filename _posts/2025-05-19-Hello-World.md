@@ -5,6 +5,7 @@ categories: [blog]
 tags: [sympy, gsoc25]
 math: true
 mermaid: true
+comments: true
 ---
 
 
