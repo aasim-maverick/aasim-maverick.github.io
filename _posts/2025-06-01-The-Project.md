@@ -191,7 +191,7 @@ These will plug into the existing hierarchy, and activate only when `python-flin
 
 ---
 
-## Proof of concept
+## **Proof of concept**
 
 I have done some early work toward this project and have coded some prototypes for the deliverables I enlisted above. Benchmarking from these prototypes have shown exciting results.
 
@@ -320,7 +320,7 @@ That's about **~250× times faster** !
 
 ---
 
-## Closing Thoughts
+## **Closing Thoughts**
 
 This project is not just a performance upgrade. It’s about making `SymPy` reach **"state of the art"** speeds, backed by the best tools in computational algebra.
 
