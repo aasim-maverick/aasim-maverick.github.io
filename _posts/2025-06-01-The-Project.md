@@ -1,8 +1,8 @@
 ---
 title: FLINT-Backed Multivariate Polynomials
-date: 2025-01-19 00:00:00 +0000
+date: 2025-06-01 00:00:00 +0000
 categories: [blog]
-tags: [sympy, gsoc25]
+tags: [sympy, FLINT, python-flint, gsoc25]
 math: true
 mermaid: true
 comments: true
@@ -64,7 +64,7 @@ But `SymPy` currently relies on pure Python implementations for multivariate cas
 
 ## **Dense vs Sparse: A Quick Primer**
 
-A dense representation of a polynomial sotres every coefficent in a list, even zeroes, in an ascending or descending order of degree of the monomials. 
+A dense representation of a polynomial stores every coefficent in a list, even zeroes, in an ascending or descending order of degree of the monomials. 
 
 For example, let's say we have the following univariate polynomial:
 
@@ -107,7 +107,7 @@ the outermost list corresponds to powers of x, and
 - Each nested list represents the coefficients, which are themselves polynomials
 in y.
 
-One can eventually see just how wasteful can this representation get when there are a lot of 0 terms and only a few non-zero ones in the polynomial. Eg. $x^{1000} + 1$ will contain a list of length 1001 and only 2 of those entries will be non zero(i.e. the useful qunantities).
+One can eventually see just how wasteful this representation can get when there are a lot of 0 terms and only a few non-zero ones in the polynomial. Eg. $x^{1000} + 1$ will contain a list of length 1001 and only 2 of those entries will be non zero(i.e. the useful quantities).
 
 ```python
 from sympy import *
@@ -126,7 +126,7 @@ This gets extremely inefficient, especially when the case is multivariate and th
 
 To overcome the above mentioned problem, the sparse polynomial representation is used, and that has entirely separate ways of programming the same operations. 
 
-Say we have, $x^100 + x^2 + 1$, as discussed, representing this in the dense format is wasteful since we would need a list with 101 entries with 98 of them just 0s. 
+Say we have, $x^{100} + x^2 + 1$, as discussed, representing this in the dense format is wasteful since we would need a list with 101 entries with 98 of them just 0s. 
 Instead of storing all coefficients (including zeros), we only store nonzero terms
 along with their corresponding degrees. This is done using a dictionary(`dict`) structure in
 `SymPy`, where:
@@ -174,7 +174,7 @@ Hence...
 
 ## **The Goal**
 
-Implement and integrate `FLINT` versions of the multivariate distributed polynomial rings (`PolyRing`), their sparse polynomial elements (`PolyElement`) and a new subclass of `DMP` to back multivariate polynomials with `FLINT` just like its univariate counterpart (`DUP_Flint`) already implemented and integrated. All of this over the integer(ℤ) and rational(ℚ) coefficent domain
+Implement and integrate `FLINT` versions of the multivariate distributed polynomial rings (`PolyRing`), their sparse polynomial elements (`PolyElement`) and a new subclass of `DMP` to back multivariate polynomials with `FLINT` just like its univariate counterpart (`DUP_Flint`) that is already implemented and integrated. All of this over the integer(ℤ) and rational(ℚ) coefficient domain
 
 Hence...
 
@@ -193,7 +193,7 @@ These will plug into the existing hierarchy, and activate only when `python-flin
 
 ## Proof of concept
 
-I have done some early work in the direction of this project and have coded some prototypes for the deliverables I enlisted above. Benchmarking from these prototypes have shown exciting results.
+I have done some early work toward this project and have coded some prototypes for the deliverables I enlisted above. Benchmarking from these prototypes have shown exciting results.
 
 For instance, using `DMP.factor_list()` on a large polynomial:
 
@@ -326,7 +326,7 @@ This project is not just a performance upgrade. It’s about making `SymPy` reac
 
 `SymPy` users won’t have to change a single line of code. But they’ll feel the difference.
 
-With FLINT in the engine, I aim to give `SymPy` a jetpack it deserves.
+With `FLINT` in the engine, I aim to give `SymPy` a jetpack it deserves.
 
 ---
 
